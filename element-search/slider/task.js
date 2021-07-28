@@ -1,35 +1,68 @@
 const prevPointer = document.querySelector(".slider__arrow_prev");
 const nextPointer = document.querySelector(".slider__arrow_next");
-//const dotPointers = document.querySelectorAll(".slider__dot");
-
-// Коллекция элементов, по клику среди элементов найти active и либо сделать active предыдущий, или следующий
-let items = document.getElementsByClassName("slider__item");
-let array = Array.from(items);
+// Слайды
+const slideElements = Array.from(document.querySelectorAll(".slider__item"));
+// Доты
+const dotElements = Array.from(document.querySelectorAll(".slider__dot"));
 
 prevPointer.onclick = prevSlide;
 nextPointer.onclick = nextSlide;
 
+dotElements.forEach(element => {
+    //вешаем обработчик
+    element.onclick = switchSlideByDot;
+});
+
 function prevSlide() {
-    let index = array.findIndex((item) => item.classList.contains("slider__item_active"));
+    let index = slideElements.findIndex((item) => item.classList.contains("slider__item_active"));
 
     // Элемент больше не активен, =>, убираем у него класс active
-    array[index].classList.remove("slider__item_active");
+    slideElements[index].classList.remove("slider__item_active");
 
     // Получаем индекс предыдущего элемента-слайда
-    index = (index == 0) ? (index = array.length - 1) : index - 1;
+    index = (index == 0) ? (index = slideElements.length - 1) : index - 1;
 
-    array[index].classList.add("slider__item_active");
+    slideElements[index].classList.add("slider__item_active");
+
+    setActiveDot(index);
 }
 
 function nextSlide() {
-    let index = array.findIndex((item) => item.classList.contains("slider__item_active"));
+    let index = slideElements.findIndex((item) => item.classList.contains("slider__item_active"));
 
     // Элемент больше не активен, =>, убираем у него класс active
-    array[index].classList.remove("slider__item_active");
+    slideElements[index].classList.remove("slider__item_active");
 
     // Получаем индекс следующего элемента-слайда
-    index = (index == array.length - 1) ? 0 : index + 1;
+    index = (index == slideElements.length - 1) ? 0 : index + 1;
 
-    array[index].classList.add("slider__item_active");
+    slideElements[index].classList.add("slider__item_active");
+    
+    setActiveDot(index);
 }
+
+function switchSlideByDot(event){
+    const dot = event.target;
+
+    // Элемент больше не активен, =>, убираем у него класс active
+    let oldIndex = slideElements.findIndex((item) => item.classList.contains("slider__item_active"));    
+    slideElements[oldIndex].classList.remove("slider__item_active");
+    
+
+    let index = dotElements.findIndex(item => item === dot);    
+    setActiveDot(index);    
+    slideElements[index].classList.add("slider__item_active");
+}
+
+function setActiveDot(index){
+    // Перекрашиваем соответствующий дот
+    dotElements.forEach(element => {
+        element.classList.remove("slider__dot_active");
+    });
+
+    dotElements[index].classList.add("slider__dot_active");
+}
+
+
+
 
