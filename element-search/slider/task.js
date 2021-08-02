@@ -15,6 +15,7 @@ dotElements.forEach(element => {
 
 function prevSlide() {
     let index = removeActiveState();
+
     // Получаем индекс предыдущего элемента-слайда
     index = (index == 0) ? (index = slideElements.length - 1) : index - 1;
 
@@ -32,6 +33,8 @@ function nextSlide() {
 function switchSlideByDot(event) {
     const dot = event.target;   
     let index = dotElements.findIndex(item => item === dot);
+    
+    removeActiveState();
 
     setActiveSlide(index);    
 }
