@@ -13,7 +13,7 @@ array.forEach(element => {
 });
 
 function closeModal(event) {
-    let parent = event.target.closest("modal");
+    let parent = event.target.closest(".modal");
     parent.classList.remove("modal_active");    
 }
 
