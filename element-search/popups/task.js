@@ -12,9 +12,9 @@ array.forEach(element => {
     element.onclick = closeModal;
 });
 
-function closeModal() {
-    modalMain.classList.remove("modal_active");
-    modalSuccess.classList.remove("modal_active");
+function closeModal(event) {
+    let parent = event.target.closest("modal");
+    parent.classList.remove("modal_active");    
 }
 
 // клик по элементу show-success
@@ -23,4 +23,5 @@ showSuccess.onclick = showSuccessModal;
 
 function showSuccessModal() {
     modalSuccess.classList.add("modal_active");
+    modalMain.classList.remove("modal_active");
 }
