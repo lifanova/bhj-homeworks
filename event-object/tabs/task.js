@@ -8,8 +8,7 @@ tabs.forEach(element => {
 
 function clickOnTab(event) {
     const tab = event.target;
-    const parent = tab.closest("tabs");
-
+    
     // Переключение вкладок
     if (tab.classList.contains("tab_active")) {
         tab.classList.remove("tab_active");
