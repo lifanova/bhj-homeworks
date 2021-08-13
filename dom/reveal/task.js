@@ -1,6 +1,6 @@
-const items = document.querySelectorAll('.reveal');
+const items = Array.from(document.querySelectorAll('.reveal'));
 
-window.onscroll = scrollHandler;
+document.addEventListener('scroll',scrollHandler);
 
 function scrollHandler () {
     items.forEach(element => {

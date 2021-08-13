@@ -8,14 +8,12 @@ tabs.forEach(element => {
 
 function clickOnTab(event) {
     const tab = event.target;
-    
     // Переключение вкладок
-    if (tab.classList.contains("tab_active")) {
-        tab.classList.remove("tab_active");
-    } else {
-        tab.classList.add("tab_active");
-    }
+    const oldTab = tabs.find(item => item.classList.contains("tab_active"));
+    oldTab.classList.remove("tab_active");
 
+    tab.classList.add("tab_active");
+  
     // Переключение контента, соответствующего вкладке 
     // Находим индекс активной вкладки
     let index = tabs.findIndex(item => item === tab);
