@@ -79,16 +79,6 @@ class Autocomplete {
       });
     });
 
-    // return filteredArray.reduce((acc, prev) => {
-    //   const obj = {
-    //     text: prev.text,
-    //     value: prev.value,
-    //   };
-
-    //   acc.push(obj);
-
-    //   return acc;
-    // }, []);
     return resultArray;
   }
 }
