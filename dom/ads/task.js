@@ -12,7 +12,8 @@ function change() {
         index = 0;
     }
 
+    // показываем элемент
     items[index].classList.add("rotator__case_active");
+    
     index++;
-
 }
