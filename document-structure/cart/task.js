@@ -52,20 +52,19 @@ function addToBasket(event) {
 
     // Проверяем, не добавлен ли уже этот продукт в корзину
     let addedProducts = Array.from(basketElement.querySelectorAll(".cart__product"));
-    let index = addedProducts.findIndex(element => element.dataset.id === id);
+    let item = addedProducts.filter(element => element.dataset.id === id)[0];
 
-    if(index) {
+    if(item) {
         // просто увеличиваем кол-во единиц продукта
-        
+        let quantityItem = item.querySelector(".cart__product-count");
+        quantityItem.textContent = quantityItem.textContent * 1 + quantity;
     } else {
         basketElement.innerHTML += `
         <div class="cart__product" data-id="${id}">
             <img class="cart__product-image" src="${img}">
             <div class="cart__product-count">${quantity}</div>        
         </div>`;
-    }
-
-   
+    }   
 }
 
 
