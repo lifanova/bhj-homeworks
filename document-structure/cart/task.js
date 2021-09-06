@@ -26,9 +26,8 @@ function processDec(event) {
 
     // Уменьшаем счетчик
     let value = quantityItem.textContent * 1;
-    if (value >= 1) {
-        quantityItem.textContent = value - 1;
-    }
+    value = (value > 1) ? value - 1 : 1;
+    quantityItem.textContent = value;
 }
 
 function processInc(event) {
@@ -54,7 +53,7 @@ function addToBasket(event) {
     let addedProducts = Array.from(basketElement.querySelectorAll(".cart__product"));
     let item = addedProducts.filter(element => element.dataset.id === id)[0];
 
-    if(item) {
+    if (item) {
         // просто увеличиваем кол-во единиц продукта
         let quantityItem = item.querySelector(".cart__product-count");
         quantityItem.textContent = quantityItem.textContent * 1 + quantity;
@@ -64,7 +63,7 @@ function addToBasket(event) {
             <img class="cart__product-image" src="${img}">
             <div class="cart__product-count">${quantity}</div>        
         </div>`;
-    }   
+    }
 }
 
 
