@@ -1,25 +1,22 @@
 const popupElement = document.getElementById('subscribe-modal');
 const popupCloseElement = document.querySelector('.modal__close');
-document.cookie = 'closed=1';
 
-if (!check("modal-closed")) {
-    console.log("[2]");
+if (!checkParam("closed")) {
     popupElement.classList.add("modal_active");
 }
 
 // Вешаем обработчик на элемент закрытия модалки
-popupCloseElement.addEventListener("click", () => {
+popupCloseElement.addEventListener("click", closePopup);
+
+function closePopup() {
     popupElement.classList.remove("modal_active");
 
-    document.cookie = 'modal-closed=yes';
-    console.log("[] " + document.cookie);
-});
+    document.cookie = 'closed=true';
+}
 
 
-function check(name) {
-    console.log("[1]");
+function checkParam(name) {
     const cookies = document.cookie.split('; ');
-    console.log("[2] " + cookies);
     const result = cookies.find(c => c.startsWith(name + '='));
 
     return result ? decodeURIComponent(result.substr(name.length + 1)) : null;

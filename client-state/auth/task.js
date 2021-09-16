@@ -28,16 +28,17 @@ function submitHandler(event) {
         if (xhr.status === 200 && xhr.readyState === 4) {
             let data = JSON.parse(xhr.responseText);
 
-            if (data.success) {
-                signinElement.classList.remove("signin_active");
-                document.getElementById("welcome").classList.add("welcome_active");
-                document.getElementById("user_id").textContent = data.user_id;
-
-                localStorage.setItem("id", data.user_id);
-
-            } else {
-                alert("Hеверный логин или пароль");
+            if (!data.success) {
+                console.log("Авторизация не прошла, неверные входные данные!");
+                                
+                return;
             }
+
+            signinElement.classList.remove("signin_active");
+            document.getElementById("welcome").classList.add("welcome_active");
+            document.getElementById("user_id").textContent = data.user_id;
+
+            localStorage.setItem("id", data.user_id);
         }
 
     }
