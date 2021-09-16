@@ -1,15 +1,20 @@
-const editorElement = document.getElementById('editor');
-const clearElement = document.getElementById('clear');
+// Редактор - textarea
+const editorElement = document.getElementById("editor");
+// Кнопка очистки содержимого
+const clearElement = document.getElementById("clear");
 
-window.addEventListener('unload', () => {
-    localStorage.setItem('message', editorElement.value);
-})
+// Забираем из localStorage
+editorElement.value = localStorage.getItem("inputText");
 
-window.addEventListener('load', () => {
-    editorElement.value = localStorage.getItem('message');
-})
+// Вешаем обработчик на ввод текста - кладем вводимый текст в localStorage
+editorElement.addEventListener("input", () => {
+    localStorage.setItem("inputText", editorElement.value);
+});
 
 // Очистка области - вешаем обработчик
-clearElement.addEventListener('click', () => {
-    editorElement.value = '';
-})
+clearElement.addEventListener("click", () => {    
+    localStorage.removeItem("inputText");
+    editorElement.value = "";
+});
+
+
